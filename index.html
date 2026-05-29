@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dhsyt Studio - Premium Invitation & Photography</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Montserrat',sans-serif;
+background:#f7f7f7;
+color:#333;
+line-height:1.6;
+}
+
+/* NAVBAR */
+.navbar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+z-index:999;
+padding:15px 25px;
+background:rgba(0,0,0,0.35);
+backdrop-filter:blur(10px);
+}
+
+.nav-container{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-family:'Playfair Display',serif;
+font-size:18px;
+letter-spacing:2px;
+color:white;
+}
+
+.menu-toggle{
+width:28px;
+height:20px;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+cursor:pointer;
+}
+
+.menu-toggle span{
+height:2px;
+background:white;
+border-radius:2px;
+transition:0.3s;
+}
+
+.menu-toggle.active span:nth-child(1){
+transform:rotate(45deg) translate(5px,5px);
+}
+.menu-toggle.active span:nth-child(2){
+opacity:0;
+}
+.menu-toggle.active span:nth-child(3){
+transform:rotate(-45deg) translate(5px,-5px);
+}
+
+/* SIDE MENU */
+.side-menu{
+position:fixed;
+top:0;
+right:-100%;
+width:260px;
+height:100%;
+background:#0f2027;
+padding:90px 25px;
+display:flex;
+flex-direction:column;
+transition:0.4s;
+z-index:998;
+}
+
+.side-menu a{
+color:white;
+text-decoration:none;
+margin:15px 0;
+font-size:18px;
+}
+
+.side-menu.active{
+right:0;
+}
+
+/* HEADER */
+.header{
+height:100vh;
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+background-size:400% 400%;
+animation:gradientMove 12s ease infinite;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+position:relative;
+}
+
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.overlay{
+max-width:700px;
+padding:20px;
+}
+
+.header h1{
+font-family:'Playfair Display',serif;
+font-size:48px;
+margin-bottom:20px;
+}
+
+.header p{
+margin-bottom:30px;
+opacity:0.9;
+}
+
+/* SCROLL */
+.scroll-indicator{
+position:absolute;
+bottom:40px;
+left:50%;
+transform:translateX(-50%);
+}
+
+.mouse{
+width:26px;
+height:42px;
+border:2px solid white;
+border-radius:20px;
+position:relative;
+}
+
+.wheel{
+width:4px;
+height:8px;
+background:white;
+position:absolute;
+top:8px;
+left:50%;
+transform:translateX(-50%);
+animation:scrollWheel 1.6s infinite;
+}
+
+@keyframes scrollWheel{
+0%{opacity:0;top:8px;}
+50%{opacity:1;}
+100%{opacity:0;top:22px;}
+}
+
+/* SERVICES */
+.services{
+padding:80px 20px;
+background:linear-gradient(180deg,#fafafa,#f4f4f4);
+text-align:center;
+}
+
+.section-title h2{
+font-family:'Playfair Display',serif;
+font-size:28px;
+margin-bottom:8px;
+}
+
+.section-title p{
+font-size:14px;
+color:#777;
+margin-bottom:40px;
+}
+
+/* GRID LEBIH COMPACT */
+.service-cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:18px;
+max-width:750px; /* diperkecil biar lebih elegan */
+margin:auto;
+}
+
+/* CARD LEBIH MINIMAL */
+.service-card{
+position:relative;
+background:white;
+padding:25px 18px; /* lebih kecil */
+border-radius:14px;
+text-decoration:none;
+color:#333;
+box-shadow:0 6px 20px rgba(0,0,0,0.04);
+transition:all 0.35s ease;
+overflow:hidden;
+}
+
+/* GARIS ATAS GOLD */
+.service-card::before{
+content:"";
+position:absolute;
+top:0;
+left:50%;
+transform:translateX(-50%);
+width:0%;
+height:2px;
+background:linear-gradient(90deg,#d4af37,#f7e7a0,#d4af37);
+transition:0.4s;
+}
+
+/* HOVER HALUS */
+.service-card:hover{
+transform:translateY(-6px);
+box-shadow:0 12px 30px rgba(0,0,0,0.08);
+}
+
+/* GARIS MUNCUL */
+.service-card:hover::before{
+width:70%;
+}
+
+/* TITLE */
+.service-card h3{
+font-family:'Playfair Display',serif;
+font-size:17px;
+margin-bottom:6px;
+}
+
+/* DESKRIPSI */
+.service-card p{
+font-size:13px;
+color:#888;
+}
+
+/* EFEK HOVER TEXT */
+.service-card:hover h3{
+color:#d4af37;
+}
+
+.service-card:hover p{
+color:#555;
+}
+/* BUTTON */
+.btn{
+display:inline-block;
+padding:10px 20px;
+border-radius:20px;
+text-decoration:none;
+}
+
+.preview{background:#eee;color:#333;}
+.order{background:#d4af37;color:white;}
+.more-btn{background:#333;color:white;}
+
+/* CTA */
+.cta{
+background:linear-gradient(135deg,#141e30,#243b55);
+color:white;
+text-align:center;
+padding:90px 20px;
+}
+
+/* FOOTER */
+footer{
+background:#000;
+color:#aaa;
+text-align:center;
+padding:25px;
+}
+.brand{
+background:white;
+padding:60px 20px;
+display:flex;
+flex-direction:column;
+align-items:center;   /* CENTER HORIZONTAL */
+justify-content:center;
+text-align:center;
+}
+
+.brand img{
+width:70px;
+max-width:100%;
+height:auto;
+display:block;
+margin:0 auto 10px auto; /* pastikan center */
+}
+/* ================= SERVICES ================= */
+/* ================= SERVICES ================= */
+.services{
+padding:100px 20px;
+background:linear-gradient(180deg,#fafafa,#f4f4f4);
+text-align:center;
+}
+
+/* TITLE */
+.section-title h2{
+font-family:'Playfair Display',serif;
+font-size:30px;
+margin-bottom:10px;
+}
+
+.section-title p{
+font-size:14px;
+color:#777;
+margin-bottom:65px;
+}
+
+/* WRAPPER */
+.services-wrapper{
+display:flex;
+flex-direction:column;
+gap:26px;
+max-width:500px;
+margin:auto;
+}
+
+/* CARD */
+.card{
+background:#fff;
+padding:22px 20px;
+border-radius:16px;
+text-align:left;
+box-shadow:0 8px 25px rgba(0,0,0,0.05);
+transition:0.3s;
+position:relative;
+}
+
+/* TITLE CARD */
+.card h3{
+font-family:'Playfair Display',serif;
+font-size:17px;
+margin-bottom:6px;
+}
+
+/* DESKRIPSI */
+.card p{
+font-size:13px;
+color:#666;
+line-height:1.6;
+}
+
+/* GARIS GOLD */
+.card::before{
+content:"";
+position:absolute;
+left:0;
+top:0;
+width:3px;
+height:0%;
+background:linear-gradient(180deg,#8b0000,#ff4d4d,#8b0000);
+transition:0.3s;
+border-radius:3px;
+}
+
+/* HOVER */
+.card:hover{
+transform:translateX(6px);
+box-shadow:0 14px 30px rgba(0,0,0,0.08);
+}
+
+.card:hover::before{
+height:100%;
+}
+/* MENU ITEM */
+/* MENU ITEM */
+.menu-item{
+margin:15px 0;
+color:white;
+}
+
+/* TITLE */
+.menu-title{
+cursor:pointer;
+font-size:17px;
+display:block;
+}
+
+/* SUBMENU */
+.submenu{
+max-height:0;
+overflow:hidden;
+transition:0.4s ease;
+padding-left:10px;
+}
+
+/* ACTIVE */
+.submenu.active{
+max-height:400px;
+margin-top:8px;
+}
+
+/* ISI */
+.submenu p{
+font-size:14px;
+margin:8px 0;
+color:#ddd;
+transition:0.3s;
+}
+
+/* HOVER ITEM */
+.submenu p:hover{
+color:#d4af37;
+padding-left:5px;
+}
+/* SECTION BACKGROUND */
+/* SECTION *//* SECTION */
+.digital-collection{
+padding:110px 20px;
+background:#fff;
+}
+
+/* TITLE */
+.section-title{
+text-align:center;
+margin-bottom:60px;
+}
+
+.section-title h2{
+font-family:'Playfair Display',serif;
+font-size:28px;
+margin-bottom:8px;
+color:#111;
+}
+
+.section-title p{
+font-size:14px;
+color:#777;
+}
+
+/* GRID */
+.preview-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:26px;
+max-width:780px;
+margin:auto;
+padding:0 10px;
+}
+
+/* HIDDEN GRID */
+.more-grid{
+display:none;
+margin-top:25px;
+}
+
+/* CARD */
+.preview-item{
+background:#fff;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.06);
+transition:0.35s;
+}
+
+/* IMAGE */
+.preview-item img{
+width:100%;
+height:230px;
+object-fit:cover;
+display:block;
+}
+
+/* DETAIL */
+.preview-detail{
+padding:16px;
+text-align:center;
+border-top:1px solid #f2f2f2;
+}
+
+/* TITLE */
+.preview-detail h3{
+font-family:'Playfair Display',serif;
+font-size:15px;
+margin-bottom:5px;
+}
+
+/* PRICE */
+.preview-detail .price{
+font-size:13px;
+color:#888;
+display:block;
+margin-bottom:10px;
+}
+
+/* BUTTON */
+.preview-detail a{
+display:inline-block;
+font-size:12px;
+padding:6px 16px;
+border-radius:20px;
+background:#8b0000;
+color:#fff;
+text-decoration:none;
+transition:0.3s;
+}
+
+.preview-detail a:hover{
+background:#b30000;
+}
+
+/* HOVER */
+.preview-item:hover{
+transform:translateY(-6px);
+box-shadow:0 18px 40px rgba(0,0,0,0.1);
+}
+
+/* BUTTON LOAD MORE */
+.loadmore-wrap{
+text-align:center;
+margin-top:30px;
+}
+
+.loadmore-btn{
+padding:10px 22px;
+border:none;
+border-radius:25px;
+background:#111;
+color:#fff;
+font-size:13px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.loadmore-btn:hover{
+background:#8b0000;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+.preview-grid{
+grid-template-columns:1fr 1fr;
+gap:14px;
+}
+
+.preview-item img{
+height:160px;
+}
+
+.digital-collection{
+padding:90px 15px;
+}
+}
+/* SECTION */
+.cta-clean{
+padding:110px 20px;
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:#fff;
+text-align:center;
+}
+
+/* CONTAINER */
+.cta-inner{
+max-width:600px;
+margin:auto;
+}
+
+/* TITLE */
+.cta-clean h2{
+font-family:'Playfair Display',serif;
+font-size:25px;
+margin-bottom:10px;
+letter-spacing:1px;
+}
+
+.cta-clean p{
+font-size:14px;
+color:rgba(255,255,255,0.75);
+margin-bottom:25px;
+}
+
+/* LOKASI */
+.cta-location p{
+font-size:14px;
+color:#fff;
+line-height:1.6;
+}
+
+/* GARIS */
+.divider{
+width:60%;
+height:1px;
+margin:28px auto;
+background:linear-gradient(to right,transparent,rgba(255,255,255,0.4),transparent);
+}
+
+/* BUTTON WA */
+.cta-btn{
+display:inline-block;
+padding:12px 26px;
+border-radius:30px;
+background:#d4af37;
+color:#000;
+text-decoration:none;
+font-size:14px;
+font-weight:500;
+transition:0.3s;
+}
+
+.cta-btn:hover{
+background:#f0d46a;
+transform:translateY(-2px);
+}
+
+/* MOBILE */
+@media(max-width:600px){
+.cta-clean{
+padding:90px 15px;
+}
+}
+/* SOCIAL */
+.cta-social{
+margin-top:18px;
+}
+
+.cta-social a{
+display:inline-flex;
+align-items:center;
+gap:6px;
+font-size:13px;
+color:rgba(255,255,255,0.6);
+text-decoration:none;
+transition:0.3s;
+}
+
+/* HOVER */
+.cta-social a:hover{
+color:#d4af37;
+transform:translateY(-1px);
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo">Dhsyt Studio</div>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
+<div class="side-menu" id="side-menu">
+  <a href="#">Home</a>
+
+  <!-- OUR SERVICE -->
+  <div class="menu-item">
+    <span class="menu-title" onclick="toggleMenu('service')">
+      Our Service ▾
+    </span>
+
+    <div class="submenu" id="service">
+      <p>Wedding Photography</p>
+      <p>Prewedding Session</p>
+      <p>Wedding Videography</p>
+      <p>Studio Portrait</p>
+      <p>Event Documentation</p>
+      <p>Digital Invitation</p>
+      <p>Printed Invitation</p>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="menu-item">
+    <span class="menu-title" onclick="toggleMenu('contact')">
+      Contact ▾
+    </span>
+
+    <div class="submenu" id="contact">
+      <p>📱 +62 859-2995-1565</p>
+      <p>📱 +62 857-1081-0254</p>
+    </div>
+  </div>
+</div>
+<header class="header">
+  <div class="overlay">
+    <h1 class="fade-in">Creative Invitation & Photo Studio</h1>
+    <p class="fade-in delay-1">Layanan undangan digital & cetak, fotografi profesional, studio foto untuk momen spesial Anda.</p>
+
+<div class="scroll-indicator">
+<div class="mouse">
+<div class="wheel"></div>
+</div>
+</div>
+
+</header>
+
+<section class="brand">
+  <img src="img/logo.png" alt="Dhsyt Studio">
+  <h3>Dhsyt Studio</h3>
+  <p>Invitation • Photography • Creative Studio</p>
+</section>
+<section class="services">
+  <div class="section-title">
+    <h2>Our Services</h2>
+    <p>Solusi lengkap & eksklusif untuk acara istimewa Anda</p>
+  </div>
+  <div class="services-wrapper">
+
+    <div class="card">
+      <h3>Wedding Photography</h3>
+      <p>Mengabadikan setiap momen sakral pernikahan Anda dengan sentuhan artistik dan emosional, menghadirkan cerita yang tak lekang oleh waktu.</p>
+    </div>
+
+    <div class="card">
+      <h3>Prewedding Session</h3>
+      <p>Sesi foto prewedding dengan konsep kreatif dan personal, menciptakan kenangan indah sebelum hari istimewa tiba.</p>
+    </div>
+
+    <div class="card">
+      <h3>Wedding Videography</h3>
+      <p>Video pernikahan Film dan sinematik yang merangkai setiap momen menjadi kisah visual penuh emosi dan keindahan.</p>
+    </div>
+
+    <div class="card">
+      <h3>Studio Portrait</h3>
+      <p>Sesi foto studio dengan pencahayaan profesional untuk hasil yang elegan, bersih, dan berkelas.</p>
+    </div>
+
+    <div class="card">
+      <h3>Event Documentation</h3>
+      <p>Dokumentasi acara dengan detail dan ketelitian, memastikan setiap momen penting tersimpan dengan sempurna.</p>
+    </div>
+
+    <div class="card">
+      <h3>Digital Invitation</h3>
+      <p>Undangan digital modern dengan desain eksklusif, interaktif, dan mudah dibagikan ke semua tamu.</p>
+    </div>
+
+    <div class="card">
+      <h3>Printed Invitation</h3>
+      <p>Undangan cetak dengan desain elegan dan material berkualitas, memberikan kesan mewah sejak pertama dilihat.</p>
+    </div>
+
+  </div>
+</section>
+<section class="digital-collection">
+
+  <div class="section-title">
+    <h2>Digital Invitation Collection</h2>
+    <p>Pilihan desain eksklusif untuk momen spesial Anda</p>
+  </div>
+
+  <!-- GRID UTAMA (4 ITEM) -->
+  <div class="preview-grid">
+
+    <div class="preview-item">
+      <img src="img/foto1.jpg">
+      <div class="preview-detail">
+        <h3>Elegant Gold</h3>
+        <span class="price">35K</span>
+        <a href="https://dhsytstudio.github.io/UndanganA1/">Preview</a>
+      </div>
+    </div>
+
+    <div class="preview-item">
+      <img src="img/foto2.jpg">
+      <div class="preview-detail">
+        <h3>Modern Clean</h3>
+        <span class="price">35K</span>
+        <a href="https://dhsytstudio.github.io/UndanganA2/">Preview</a>
+      </div>
+    </div>
+
+    <div class="preview-item">
+      <img src="img/foto3.jpg">
+      <div class="preview-detail">
+        <h3>Floral Dream</h3>
+        <span class="price">35K</span>
+        <a href="https://dhsytstudio.github.io/UndanganA3/">Preview</a>
+      </div>
+    </div>
+
+    <div class="preview-item">
+      <img src="img/foto4.jpg">
+      <div class="preview-detail">
+        <h3>Luxury Dark</h3>
+        <span class="price">35K</span>
+<a href="https://dhsytstudio.github.io/UndanganA4/">Preview</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GRID TAMBAHAN (10 ITEM) -->
+  <div class="preview-grid more-grid" id="moreGrid">
+
+    <div class="preview-item"><img src="img/foto5.jpg"><div class="preview-detail"><h3>Classic White</h3><span class="price">35K</span><a href="#">Preview</a></div></div>
+
+    <div class="preview-item"><img src="img/foto6.jpg"><div class="preview-detail"><h3>Soft Pink</h3><span class="price">35K</span><a href="#">Preview</a></div></div>
+
+    <div class="preview-item"><img src="img/foto7.jpg"><div class="preview-detail"><h3>Royal Black</h3><span class="price">35K</span><a href="#">Preview</a></div></div>
+
+    <div class="preview-item"><img src="img/foto8.jpg"><div class="preview-detail"><h3>Minimal Grey</h3><span class="price">35K</span><a href="#">Preview</a></div></div>
+
+    <div class="preview-item"><img src="img/foto9.jpg"><div class="preview-detail"><h3>Romantic Floral</h3><span class="price">35K</span><a href="#">Preview</a></div></div>
+
+    <div class="preview-item"><img src="img/foto10.jpg"><div class="preview-detail"><h3>Elegant Ivory</h3><span class="price">35K</span><a href="#">Preview</a></div></div>
+
+    <div class="preview-item"><img src="img/foto11.jpg"><div class="preview-detail"><h3>Luxury Gold</h3><span class="price">35K</span><a href="#">Preview</a></div></div>
+
+    <div class="preview-item"><img src="img/foto12.jpg"><div class="preview-detail"><h3>Soft Beige</h3><span class="price">35K</span><a href="#">Preview</a></div></div>
+
+    <div class="preview-item"><img src="img/foto13.jpg"><div class="preview-detail"><h3>Modern Blue</h3><span class="price">35K</span><a href="#">Preview</a></div></div>
+
+    <div class="preview-item"><img src="img/foto14.jpg"><div class="preview-detail"><h3>Dark Luxury</h3><span class="price">35K</span><a href="#">Preview</a></div></div>
+
+  </div>
+
+  <!-- TOMBOL -->
+  <div class="loadmore-wrap">
+    <button onclick="toggleMore()" class="loadmore-btn" id="btnMore">
+      Selengkapnya
+    </button>
+  </div>
+
+</section>
+<section class="packages" id="undangan-digital">
+  <!-- tetap sama -->
+</section>
+
+<section class="cta-clean">
+
+  <div class="cta-inner">
+    <h2>Konsultasi & Informasi</h2>
+    <p>Hubungi kami untuk layanan wedding, fotografi & undangan digital</p>
+
+    <!-- LOKASI (SUDAH DIRAPIKAN) -->
+    <div class="cta-location">
+      <p>
+        Dhsyt Studio<br>
+        Lebak Wangi, Serang – Banten, Indonesia
+      </p>
+    </div>
+
+    <!-- GARIS -->
+    <div class="divider"></div>
+
+    <!-- BUTTON WA -->
+    <a href="https://wa.me/6285929951565" target="_blank" class="cta-btn">
+      Chat WhatsApp
+    </a>
+<div class="cta-social">
+  <a href="https://instagram.com/USERNAME_KAMU" target="_blank">
+
+    <!-- ICON IG -->
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+      <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 
+      5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 
+      3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 
+      1.3-3 3-3h10zm-5 3.5A5.5 5.5 0 1 0 17.5 13 
+      5.5 5.5 0 0 0 12 7.5zm0 2A3.5 3.5 0 1 1 8.5 
+      13 3.5 3.5 0 0 1 12 9.5zm4.8-.9a1.2 1.2 0 1 
+      0 1.2 1.2 1.2 1.2 0 0 0-1.2-1.2z"/>
+    </svg>
+
+    <span>@dhsyt_studio</span>
+
+  </a>
+</div>
+  </div>
+
+</section>
+
+<footer>
+  © 2026 Dhsyt Studio - Premium Invitation & Photography
+</footer>
+
+<script>
+const toggle = document.getElementById("menu-toggle");
+const menu = document.getElementById("side-menu");
+
+toggle.addEventListener("click", () => {
+  toggle.classList.toggle("active");
+  menu.classList.toggle("active");
+});
+function toggleService(){
+  document.getElementById("submenu").classList.toggle("active");
+}
+
+function toggleDetail(){
+  document.getElementById("submenu-detail").classList.toggle("active");
+}
+function toggleMenu(id){
+  document.getElementById(id).classList.toggle("active");
+}
+function toggleMore(){
+  const grid = document.getElementById("moreGrid");
+  const btn = document.getElementById("btnMore");
+
+  if(grid.style.display === "grid"){
+    grid.style.display = "none";
+    btn.innerText = "Selengkapnya";
+  }else{
+    grid.style.display = "grid";
+    btn.innerText = "Tutup";
+  }
+}
+</script>
+
+</body>
+</html>
